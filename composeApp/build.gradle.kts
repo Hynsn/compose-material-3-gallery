@@ -66,12 +66,17 @@ kotlin {
 android {
     namespace = "com.github.terrakok"
     compileSdk = 34
-
+    /**
+     * keyAlias:gallery
+     * keyPassword:qwe!2345
+     * First and Last Name:hynson
+     * Organization:github/gallery
+     */
     defaultConfig {
         minSdk = 24
         targetSdk = 34
 
-        applicationId = "com.github.terrakok.androidApp"
+        applicationId = "com.hynson.gallery"
         versionCode = 1
         versionName = "1.0.0"
     }
