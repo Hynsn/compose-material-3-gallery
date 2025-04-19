@@ -110,7 +110,7 @@ internal fun App() = AppTheme {
                 @Composable
                 fun RowScope.actions() {
                     IconButton(
-                        onClick = { openUrl("https://github.com/terrakok/compose-material-3-gallery") }
+                        onClick = { openUrl("https://github.com/Hynsn/compose-material-3-gallery") }
                     ) {
                         Icon(
                             Icons.Default.DocumentScanner,
