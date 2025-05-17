@@ -6,10 +6,8 @@ import androidx.compose.material.icons.automirrored.filled.TextSnippet
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.DocumentScanner
 import androidx.compose.material.icons.filled.FormatPaint
-import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.Opacity
-import androidx.compose.material.icons.filled.TextSnippet
 import androidx.compose.material.icons.filled.Widgets
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -32,10 +30,8 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.SheetState
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.rememberDrawerState
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -43,7 +39,6 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -110,7 +105,7 @@ internal fun App() = AppTheme {
                 @Composable
                 fun RowScope.actions() {
                     IconButton(
-                        onClick = { openUrl("https://github.com/Hynsn/compose-material-3-gallery") }
+                        onClick = { openUrl("https://terrakok.github.io/compose-material-3-gallery/") }
                     ) {
                         Icon(
                             Icons.Default.DocumentScanner,
@@ -130,7 +125,7 @@ internal fun App() = AppTheme {
                     SelectColorExtractionImageButton()
                 }
 
-                if (screenWidth <= narrowScreenWidthThreshold) {
+                if (isNarrowScreen(screenWidth, narrowScreenWidthThreshold)) {
                     TopAppBar(
                         title = { Text(text = "Material 3") },
                         scrollBehavior = scrollBehavior,
@@ -148,7 +143,7 @@ internal fun App() = AppTheme {
                 Row(
                     modifier = Modifier.padding(it).consumeWindowInsets(WindowInsets.systemBars)
                 ) {
-                    if (screenWidth > narrowScreenWidthThreshold) {
+                    if (!isNarrowScreen(screenWidth, narrowScreenWidthThreshold)) {
                         NavigationRail(
                             modifier = Modifier.padding(6.dp)
                         ) {
@@ -180,7 +175,7 @@ internal fun App() = AppTheme {
                 }
             },
             bottomBar = {
-                if (screenWidth <= narrowScreenWidthThreshold) {
+                if (isNarrowScreen(screenWidth, narrowScreenWidthThreshold)) {
                     NavigationBar {
                         screens.forEach { screen ->
                             NavigationBarItem(
@@ -201,3 +196,4 @@ internal fun App() = AppTheme {
 }
 
 internal expect fun openUrl(url: String?)
+internal expect fun isNarrowScreen(screenWidth: Int, threshold: Int): Boolean

@@ -50,7 +50,7 @@ fun ElevationScreen() {
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 8.dp)
             .onGloballyPositioned {
-                columns = if (it.size.width < narrowScreenWidthThreshold) 3 else 6
+                columns = if (isNarrowScreen(it.size.width, narrowScreenWidthThreshold)) 3 else 6
             }
     ) {
         Text(
